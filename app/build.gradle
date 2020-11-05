@@ -1,0 +1,100 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "com.rbmhz.actwtk"
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+
+        buildConfigField "String", "IMGUR_URL", "\"https://api.imgur.com/3/\""
+        buildConfigField "String", "IMGUR_CLIENT_ID", "\"400b47ac7e0e78d\""
+        buildConfigField "String", "IMGUR_CLIENT_SECRET", "\"58748dbd544bf866c64c95c9ef46355acd92186c\""
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    dataBinding { enabled = true }
+
+}
+
+dependencies {
+    //Libs
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //appcompat
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+
+    //lifecycle
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+
+    //dagger
+    implementation "com.google.dagger:dagger:$dagger2_version"
+    implementation "com.google.dagger:dagger-android:$dagger2_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger2_version"
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    kapt "com.google.dagger:dagger-android-processor:$dagger2_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger2_version"
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    //RxJava
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+
+    //stetho
+    implementation 'com.facebook.stetho:stetho:1.5.1'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
+    //coroutines
+//    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.5'
+//    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5'
+//    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.3.2'
+//    implementation 'android.arch.lifecycle:viewmodel:1.1.1'
+//    implementation 'android.arch.lifecycle:extensions:1.1.1'
+
+
+    //tests
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+
+    //Chart View
+    implementation 'com.github.PhilJay:MPAndroidChart:3.1.0'
+
+}
